@@ -9,6 +9,7 @@ import { BiArrowBack } from 'react-icons/bi'
 import ButonRadius from '../../components/ButtonRadius'
 import { Link } from 'react-router-dom'
 import ModalExcluirTask from '../../components/Tasks/ModalExcluirTask'
+import ModalEditTask from '../../components/Tasks/ModalEditTask'
 
 const UserTask = () => {
     let { id } = useParams()
@@ -16,7 +17,7 @@ const UserTask = () => {
 
     useEffect(() => {
         getTasks(id)
-    }, [tasks])
+    }, [id])
 
     return (
         <Container>
@@ -32,6 +33,7 @@ const UserTask = () => {
             </div>
             <ModalCreateTask id={id} />
             <ModalExcluirTask id={id} />
+            <ModalEditTask id={id} />
         </Container>
     )
 }
