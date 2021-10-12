@@ -10,6 +10,7 @@ import ButonRadius from '../../components/ButtonRadius'
 import { Link } from 'react-router-dom'
 import ModalExcluirTask from '../../components/Tasks/ModalExcluirTask'
 import ModalEditTask from '../../components/Tasks/ModalEditTask'
+import { Fragment } from 'react'
 
 const UserTask = () => {
     let { id } = useParams()
@@ -28,12 +29,16 @@ const UserTask = () => {
             <Button onClick={() => openModalTask()}>Cadastrar Tarefa</Button>
             <div>
                 {tasks?.map((el, index) => {
-                    return <CardTaskList key={index} task={el} />
+                    return (
+                        <Fragment key={String(el.id)}>
+                            <CardTaskList key={index} task={el} />
+                            <ModalCreateTask id={id} />
+                            <ModalExcluirTask id={id} />
+                            <ModalEditTask id={id} element={el} />
+                        </Fragment>
+                    )
                 })}
             </div>
-            <ModalCreateTask id={id} />
-            <ModalExcluirTask id={id} />
-            <ModalEditTask id={id} />
         </Container>
     )
 }
