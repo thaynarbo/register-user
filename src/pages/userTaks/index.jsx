@@ -27,8 +27,8 @@ const UserTask = () => {
             </Link>
             <Button onClick={() => openModalTask()}>Cadastrar Tarefa</Button>
             <div>
-                {tasks?.map((el) => {
-                    return <CardTaskList task={el} />
+                {tasks?.map((el, index) => {
+                    return <CardTaskList key={index} task={el} />
                 })}
             </div>
             <ModalCreateTask id={id} />
