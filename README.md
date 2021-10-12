@@ -1,7 +1,7 @@
 # Sobre o projeto
 
 A aplicação foi desenvolvida para que seja possível a criação de um usuário e cada usuário poder criar ou editar as suas tarefas.
-<br>[Demo](veggi-teste.netlify.app).
+<br>[Demo](https://veggi-teste.netlify.app/).
 
 ## Requisitos
 
