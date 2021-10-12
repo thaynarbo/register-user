@@ -25,9 +25,7 @@ export const Container = styled.div`
     }
 
     .done {
-        display: flex;
-        align-items: center;
-        color: ${theme.colors.shade50};
+        text-decoration: line-through;
     }
 
     .action {
