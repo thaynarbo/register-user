@@ -2,15 +2,19 @@ import React, { useEffect, useState } from 'react'
 import Modal from '../../Modal'
 import { BiTask } from 'react-icons/bi'
 import Input from './../../input'
+import * as Style from './styles'
 
 import { useTask } from '../../../context/taskContext'
 
-const ModalEditTask = ({ id }) => {
-    const { modalEdit, closeModalEdit, editTask, value, setValue } = useTask()
-    const [changes, setChanges] = useState(value)
+const ModalEditTask = ({ element }) => {
+    const { modalEdit, closeModalEdit, editTask } = useTask()
+    const [value, setValue] = useState('')
+    const [done, setDone] = useState(false)
+    useEffect(() => {
+        setValue(element.description)
+    }, [element])
     const submit = () => {
-        editTask(value)
-        setChanges(value)
+        editTask({ description: value, done })
     }
 
     return (
@@ -24,12 +28,21 @@ const ModalEditTask = ({ id }) => {
             <Input
                 icon={<BiTask />}
                 type={'text'}
-                value={changes}
+                value={value}
                 onChange={(e) => {
                     setValue(e.target.value)
-                    setChanges(e.target.value)
                 }}
             />
+            <Style.Checkbox>
+                <input
+                    type="checkbox"
+                    id="done"
+                    name="done"
+                    onChange={() => setDone((old) => !old)}
+                    checked={!!done}
+                />
+                <label htmlFor="done">Feito</label>
+            </Style.Checkbox>
         </Modal>
     )
 }
