@@ -4,6 +4,7 @@ import api from '../services/api'
 const TaskContext = createContext(null)
 
 const TaskProvider = ({ children }) => {
+    const [value, setValue] = useState('')
     const [tasks, setTasks] = useState([])
     const [modalDelete, setModalDelete] = useState(false)
     const [modalEdit, setModalEdit] = useState(false)
@@ -40,7 +41,7 @@ const TaskProvider = ({ children }) => {
                 description,
                 done: false,
             })
-            await getTasks(userId)
+            await getTasksByUser(userId)
             closeModalTask()
         } catch {
             console.log('deu errado')
@@ -48,7 +49,7 @@ const TaskProvider = ({ children }) => {
         }
     }
 
-    const getTasks = async (id) => {
+    const getTasksByUser = async (id) => {
         try {
             const { data } = await api.get(`/tasks/${id}`)
             setTasks(data)
@@ -61,7 +62,7 @@ const TaskProvider = ({ children }) => {
     const deleteTask = async () => {
         try {
             await api.delete(`/tasks/${selectTask.id}`)
-            await getTasks(selectTask.userId)
+            await getTasksByUser(selectTask.userId)
             closeModalDelete()
         } catch {
             console.log('deu errado')
@@ -74,7 +75,8 @@ const TaskProvider = ({ children }) => {
                 description,
                 done: isDone,
             })
-            getTasks(selectTask.userId)
+            getTasksByUser(selectTask.userId)
+            setValue(selectTask.description)
             closeModalEdit()
         } catch {}
     }
@@ -84,7 +86,7 @@ const TaskProvider = ({ children }) => {
             value={{
                 tasks,
                 open,
-                getTasks,
+                getTasksByUser,
                 closeModalTask,
                 openModalTask,
                 createTask,
@@ -100,6 +102,8 @@ const TaskProvider = ({ children }) => {
                 modalEdit,
                 isDone,
                 setIsDone,
+                value,
+                setValue,
             }}
         >
             {children}

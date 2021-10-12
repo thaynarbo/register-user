@@ -6,14 +6,12 @@ import Input from './../../input'
 import { useTask } from '../../../context/taskContext'
 
 const ModalEditTask = ({ id }) => {
-    const { modalEdit, closeModalEdit, editTask, selectTask } = useTask()
-
-    const [value, setValue] = useState('')
+    const { modalEdit, closeModalEdit, editTask, value, setValue } = useTask()
 
     const submit = () => {
         editTask(value)
-        setValue('')
     }
+
     return (
         <Modal
             open={modalEdit}

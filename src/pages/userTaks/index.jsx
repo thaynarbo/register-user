@@ -13,10 +13,10 @@ import ModalEditTask from '../../components/Tasks/ModalEditTask'
 
 const UserTask = () => {
     let { id } = useParams()
-    const { tasks, getTasks, openModalTask } = useTask()
+    const { tasks, getTasksByUser, openModalTask } = useTask()
 
     useEffect(() => {
-        getTasks(id)
+        getTasksByUser(id)
     }, [id])
 
     return (
