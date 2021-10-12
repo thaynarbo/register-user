@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react'
+import React, { createContext, useState, useContext, useEffect } from 'react'
 import api from '../services/api'
 
 const UsersContext = createContext(null)
@@ -9,6 +9,10 @@ const UsersProvider = ({ children }) => {
     const [isFetching, seIsFetching] = useState(false)
     const [users, setUser] = useState([])
     const [selectUser, setSelectUser] = useState(null)
+
+    useEffect(() => {
+        getUsers()
+    }, [])
 
     const openModalCreateUser = () => {
         setModalCreate(true)
