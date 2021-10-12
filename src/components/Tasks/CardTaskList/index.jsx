@@ -3,22 +3,23 @@ import ButonRadius from '../../ButtonRadius'
 import { FaTrash } from 'react-icons/fa'
 import { MdModeEditOutline } from 'react-icons/md'
 import { Container } from './styles'
-import { useHistory } from 'react-router-dom'
 import { useTask } from '../../../context/taskContext'
-import { RiCheckboxBlankCircleLine, RiCheckboxCircleFill } from 'react-icons/ri'
+import {
+    RiCheckboxBlankCircleFill,
+    RiCheckboxBlankCircleLine,
+} from 'react-icons/ri'
 
 const CardTaskList = ({ task }) => {
-    const history = useHistory()
     const { openModalDelete, openModalEdit } = useTask()
     return (
         <Container>
             <div className={'description'}>
-                {!task.done && (
-                    <>
-                        <RiCheckboxBlankCircleLine />
-                        <p>{task.description}</p>
-                    </>
+                {!task.done ? (
+                    <RiCheckboxBlankCircleLine />
+                ) : (
+                    <RiCheckboxBlankCircleFill />
                 )}
+                <p className={task.done ? 'done' : ''}>{task.description}</p>
             </div>
             <div className={'action'}>
                 <ButonRadius
