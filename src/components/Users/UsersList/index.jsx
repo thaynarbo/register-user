@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Container } from './styles'
 import { useUsers } from '../../../context/userContext'
 import CardUser from '../CardUserList'
 
 const ListUsers = () => {
-    const { users, getUsers } = useUsers()
-    useEffect(() => {}, [users])
+    const { users } = useUsers()
+
     return (
         <Container>
             {users?.map((user) => (
-                <CardUser user={user} />
+                <CardUser key={String(user.id)} user={user} />
             ))}
         </Container>
     )
