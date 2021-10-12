@@ -12,6 +12,7 @@ const ModalEditTask = ({ element }) => {
     const [done, setDone] = useState(false)
     useEffect(() => {
         setValue(element.description)
+        setDone(element.done)
     }, [element])
     const submit = () => {
         editTask({ description: value, done })
