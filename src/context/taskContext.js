@@ -4,13 +4,11 @@ import api from '../services/api'
 const TaskContext = createContext(null)
 
 const TaskProvider = ({ children }) => {
-    const [value, setValue] = useState('')
     const [tasks, setTasks] = useState([])
     const [modalDelete, setModalDelete] = useState(false)
     const [modalEdit, setModalEdit] = useState(false)
     const [open, setOpenModal] = useState(false)
     const [selectTask, setSelectTask] = useState(null)
-    const [isDone, setIsDone] = useState(false)
 
     const closeModalTask = () => {
         setOpenModal(false)
@@ -69,14 +67,13 @@ const TaskProvider = ({ children }) => {
         } finally {
         }
     }
-    const editTask = async (description) => {
+    const editTask = async ({ description, done }) => {
         try {
             await api.patch(`/tasks/${selectTask.id}`, {
                 description,
-                done: isDone,
+                done,
             })
             getTasksByUser(selectTask.userId)
-            setValue(selectTask.description)
             closeModalEdit()
         } catch {}
     }
@@ -100,10 +97,6 @@ const TaskProvider = ({ children }) => {
                 openModalEdit,
                 closeModalEdit,
                 modalEdit,
-                isDone,
-                setIsDone,
-                value,
-                setValue,
             }}
         >
             {children}
