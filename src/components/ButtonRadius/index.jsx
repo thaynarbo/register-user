@@ -7,9 +7,8 @@ const ButonRadius = ({ icon, ...props }) => {
 }
 
 ButonRadius.propTypes = {
-    children: PropTypes.node.isRequired,
     props: PropTypes.any,
-    variant: PropTypes.object,
+    variant: PropTypes.string,
     icon: PropTypes.node.isRequired,
     outline: PropTypes.bool,
 }

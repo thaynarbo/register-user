@@ -4,7 +4,7 @@ import Modal from '../../Modal'
 import { useTask } from '../../../context/taskContext'
 
 const ModalExcluirTask = () => {
-    const { deleteTask, modalDelete, selectTask, closeModalDelete } = useTask()
+    const { deleteTask, modalDelete, closeModalDelete } = useTask()
 
     return (
         <Modal
