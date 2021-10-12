@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Container, Wrapper } from './styles'
 import Button from '../../components/Button'
 import ListUsers from '../../components/Users/UsersList'
@@ -7,11 +7,7 @@ import ModalExcluirUser from '../../components/Users/MoldaExcluirUser'
 import ModalCreateUser from '../../components/Users/ModalCreateUser'
 
 const Users = () => {
-    const { getUsers, openModalCreateUser, users } = useUsers()
-
-    useEffect(() => {
-        getUsers()
-    }, [])
+    const { openModalCreateUser } = useUsers()
 
     return (
         <Container>
