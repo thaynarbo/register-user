@@ -9,7 +9,9 @@ import ModalCreateUser from '../../components/Users/ModalCreateUser'
 const Users = () => {
     const { getUsers, openModalCreateUser, users } = useUsers()
 
-    useEffect(() => {}, [users])
+    useEffect(() => {
+        getUsers()
+    }, [])
 
     return (
         <Container>

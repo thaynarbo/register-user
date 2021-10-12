@@ -7,9 +7,10 @@ import { useTask } from '../../../context/taskContext'
 
 const ModalEditTask = ({ id }) => {
     const { modalEdit, closeModalEdit, editTask, value, setValue } = useTask()
-
+    const [changes, setChanges] = useState(value)
     const submit = () => {
         editTask(value)
+        setChanges(value)
     }
 
     return (
@@ -23,8 +24,11 @@ const ModalEditTask = ({ id }) => {
             <Input
                 icon={<BiTask />}
                 type={'text'}
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
+                value={changes}
+                onChange={(e) => {
+                    setValue(e.target.value)
+                    setChanges(e.target.value)
+                }}
             />
         </Modal>
     )
