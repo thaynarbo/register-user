@@ -5,11 +5,7 @@ import CardUser from '../CardUserList'
 
 const ListUsers = () => {
     const { users, getUsers } = useUsers()
-    useEffect(() => {
-        setTimeout(() => {
-            getUsers()
-        }, 2000)
-    }, [users])
+    useEffect(() => {}, [users])
     return (
         <Container>
             {users?.map((user) => (

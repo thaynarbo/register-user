@@ -7,11 +7,9 @@ import ModalExcluirUser from '../../components/Users/MoldaExcluirUser'
 import ModalCreateUser from '../../components/Users/ModalCreateUser'
 
 const Users = () => {
-    const { getUsers, openModalCreateUser } = useUsers()
+    const { getUsers, openModalCreateUser, users } = useUsers()
 
-    useEffect(() => {
-        getUsers()
-    }, [])
+    useEffect(() => {}, [users])
 
     return (
         <Container>

@@ -58,6 +58,7 @@ const UsersProvider = ({ children }) => {
                 name,
             })
             closeModalCreateUser()
+            getUsers()
         } catch {
             console.log('deu errado')
         } finally {
